@@ -1,7 +1,7 @@
 
 import matplotlib.pyplot as plt
 import  cv2
-%matplotlib inline
+
 from model import *
 from utils import *
 import os
