@@ -39,48 +39,16 @@ class_threshold = 0.6
 
 import os
 from matplotlib import pyplot as plt
-images=os.listdir('drive/My Drive/images')
+images=os.listdir('images')
 
 from numpy import expand_dims
 from keras.preprocessing.image import load_img, img_to_array
 
-# load and prepare an image
-def load_image_pixels(filename, shape):
-    '''
-    Function preprocess the images to 416x416, which is the standard input shape for YOLOv3, 
-    and also keeps track of the originl shape, which is later used to draw the boxes.
-    
-    paramters:
-    filename {String}: path to the image
-    shape {tuple}: shape of the input dimensions of the network
-    
-    returns:
-    image {PIL}: image of shape 'shape'
-    width {int}: original width of the picture
-    height {int}: original height of the picture
-    '''
-    # load the image to get its shape
-    image = load_img(filename)
-    width, height = image.size
-    
-    # load the image with the required size
-    image = load_img(filename, target_size=shape)
-    
-    # convert to numpy array
-    image = img_to_array(image)
-    
-    # scale pixel values to [0, 1]
-    image = image.astype('float32')
-    image /= 255.0
-    
-    # add a dimension so that we have one sample
-    image = expand_dims(image, 0)
-    return image, width, height
 
 import tensorflow as tf
 
 for file in images:
-    photo_filename ='drive/My Drive/images/' + file
+    photo_filename ='images/' + file
     #a = tf.timestamp()
     # load picture with old dimensions
     image, image_w, image_h = load_image_pixels(photo_filename, (WIDTH, HEIGHT))

@@ -1,7 +1,7 @@
 
 from matplotlib import pyplot
 from matplotlib.patches import Rectangle
-
+import numpy as np
 
 ## this function gets box predictions and outputs what is which class has max probability , and also the probability
 class BoundBox:
@@ -113,6 +113,8 @@ def do_nms(boxes, nms_thresh):
                 index_j = sorted_indices[j]
                 if bbox_iou(boxes[index_i], boxes[index_j]) >= nms_thresh:
                     boxes[index_j].classes[c] = 0
+from numpy import expand_dims
+from keras.preprocessing.image import load_img, img_to_array
 
 # load and prepare an image
 def load_image_pixels(filename, shape):
