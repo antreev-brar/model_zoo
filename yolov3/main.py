@@ -18,7 +18,6 @@ def main():
 
     model = make_yolov3_model()
     # load the model weights
-    # I have loaded the pretrained weights in a separate dataset
     weight_reader = WeightReader('yolov3.weights')
 
     # set the model weights into the model
