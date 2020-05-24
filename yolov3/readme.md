@@ -90,16 +90,20 @@ this is almost correct but we have 3 bounding boxes instead of 5
 * th -(range : 0-1) will give us height of box after an operation;
 * tw -(range : 0-1) will give us width of box after an operation;
 * p -(range : 0-1) probability of having any object at all in the cell
-The operations the these :
+
+
+The operations are :
+
 
 ![4](./assets/op.png)
-![4](./assets/opp.png)
 ```
 I know u have no idea what these operations mean :
 𝑐𝑥 and 𝑐𝑦 are the top-left coordinates of the grid. 𝑝𝑤 and 𝑝ℎ are anchors dimensions for the box.
 The main thing is after these operations we get all the four cordinates of a prediction box with respect to image 
 If top-left corner is (0,0) and bottom right is (1,1) . This will be helpful in drawing box on orginal image , not the processed (416,416) one , pretty dope right !!
 ```
+![4](./assets/opp.png)
+
  Now we have the boxes but we dont know if which object is in there (if any ) , So here is what we do , we multiply probability of any object in the cell to the class values. This gives a number that would be a measure what is the chance that there is an object in the box && the object is of a particular class.
 ![4](./assets/a.png)
 
