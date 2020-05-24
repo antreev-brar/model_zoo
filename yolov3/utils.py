@@ -168,6 +168,6 @@ def draw_boxes(filename, v_boxes, v_labels, v_scores):
         ax.add_patch(rect)
         # draw text and score in top left corner
         label = "%s (%.3f)" % (v_labels[i], v_scores[i])
-        pyplot.text(x1, y1, label, color='white')
+        pyplot.text(x1, y1, label, color='red')
     # show the plot
     pyplot.show()
