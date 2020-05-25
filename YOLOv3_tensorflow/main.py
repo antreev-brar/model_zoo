@@ -19,6 +19,7 @@ def main():
     parser.add_argument('--class_threshold', type=int, default=0.5)
     parser.add_argument('--nms_iou_threshold', type=int, default=0.5)
     parser.add_argument('--iou', type=float, default=0.01)
+    args = parser.parse_args()
     model = make_yolov3_model()
     # load the model weights
     weight_reader = WeightReader('yolov3.weights')
