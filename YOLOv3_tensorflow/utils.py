@@ -143,7 +143,7 @@ def get_boxes(boxes, labels, thresh):
     return v_boxes, v_labels, v_scores
  
 # draw all results
-def draw_boxes(filename, v_boxes, v_labels, v_scores):x
+def draw_boxes(filename, v_boxes, v_labels, v_scores):
     data = pyplot.imread(filename)
     pyplot.imshow(data)
     ax = pyplot.gca()
