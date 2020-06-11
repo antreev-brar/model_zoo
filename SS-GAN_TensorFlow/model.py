@@ -13,7 +13,7 @@ from keras import backend
 from keras.optimizers import Adam
 from matplotlib import pyplot
 
-def define_generator(latent_dim):
+def define_generator(latent_dim,alpha_):
   input_ = Input(shape=(latent_dim,))
   nodes = 7*7*128
   generator = Dense(nodes)(input_)
@@ -37,7 +37,7 @@ def custom_activation(output):
   result = logexp_sum / (logexp_sum+1.0)
   return result
 
-def define_discriminator(input_shape=(28,28,1), num_classes =10):
+def define_discriminator(alpha_,dropout_,lr_,beta_1_,input_shape=(28,28,1), num_classes =10):
   input_img = Input(shape = input_shape)
   dis = Conv2D(128 , (3,3) , strides =(2,2) , padding = 'same')(input_img)
   dis = LeakyReLU(alpha = alpha_)(dis)
@@ -61,7 +61,7 @@ def define_discriminator(input_shape=(28,28,1), num_classes =10):
   us_model.compile(loss='binary_crossentropy', optimizer=Adam(lr=lr_, beta_1=beta_1_))
   return s_model , us_model
 
-def define_gan(g_model , dis_model):
+def define_gan(g_model , dis_model,lr_,beta_1_):
   dis_model.trainable = False
   gan_output = dis_model(g_model.output)
   gan_model = Model(g_model.input , gan_output)

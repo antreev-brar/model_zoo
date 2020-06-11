@@ -74,19 +74,49 @@ def train(g_model , us_model , s_model ,model , dataset , latent_dim , epochs =e
     plot_gan_loss.append(gan_loss)
     plot_sup_acc.append(s_acc)
 		# evaluate the model performance every so often
-		
+def summarize_performance(step, g_model,s_model, latent_dim, dataset, n_samples=100):
+    # prepare fake examples
+    X, _ = gen_fake_samples(g_model, latent_dim, n_samples)
+    # scale from [-1,1] to [0,1]
+    X = (X + 1) / 2.0
+    # plot images
+    for i in range(100):
+      # define subplot
+      pyplot.subplot(10, 10, 1 + i)
+      # turn off axis
+      pyplot.axis('off')
+      # plot raw pixel data
+      pyplot.imshow(X[i, :, :, 0], cmap='gray_r')
+    # save plot to file
+    filename1 = 'generated_plot_%04d.png' % (step+1)
+    pyplot.savefig(filename1)
+    pyplot.close()
+    # evaluate the classifier model
+    X, y = dataset
+    _, acc = s_model.evaluate(X, y, verbose=0)
+    print('Classifier Accuracy: %.3f%%' % (acc * 100))
+    
+    # save the generator model
+    filename2 = 'g_model_%04d.h5' % (step+1)
+    g_model.save(filename2)
+    # save the classifier model
+    filename3 = 'c_model_%04d.h5' % (step+1)
+    s_model.save(filename3)
+    print('>Saved: %s, %s, and %s' % (filename1, filename2, filename3))
+    plot_test_acc.append(acc)
+
+
 # creating model structure
-g_model = define_generator(latent_dim)
+g_model = define_generator(latent_dim,alpha_)
 g_model.summary()
-s_model, us_model = define_discriminator()
+s_model, us_model = define_discriminator(alpha_,dropout_,lr_,beta_1_)
 s_model.summary()
 us_model.summary()
-model = define_gan(g_model , us_model)
+model = define_gan(g_model , us_model,lr_,beta_1_)
 model.summary()
-
 
 
 dataset = load_dataset()
 train(g_model, us_model, s_model, model, dataset, latent_dim)
-one_example()
-graph_plot()
+#one_example()
+#graph_plot()

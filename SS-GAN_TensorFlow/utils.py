@@ -63,36 +63,6 @@ def generate_latent_points(num_samples , latent_dim):
   return latent_input
 #generate_latent_points(5,5)
 
-def summarize_performance(step, g_model,s_model, latent_dim, dataset, n_samples=100):
-    # prepare fake examples
-    X, _ = gen_fake_samples(g_model, latent_dim, n_samples)
-    # scale from [-1,1] to [0,1]
-    X = (X + 1) / 2.0
-    # plot images
-    for i in range(100):
-      # define subplot
-      pyplot.subplot(10, 10, 1 + i)
-      # turn off axis
-      pyplot.axis('off')
-      # plot raw pixel data
-      pyplot.imshow(X[i, :, :, 0], cmap='gray_r')
-    # save plot to file
-    filename1 = 'generated_plot_%04d.png' % (step+1)
-    pyplot.savefig(filename1)
-    pyplot.close()
-    # evaluate the classifier model
-    X, y = dataset
-    _, acc = s_model.evaluate(X, y, verbose=0)
-    print('Classifier Accuracy: %.3f%%' % (acc * 100))
-    
-    # save the generator model
-    filename2 = 'g_model_%04d.h5' % (step+1)
-    g_model.save(filename2)
-    # save the classifier model
-    filename3 = 'c_model_%04d.h5' % (step+1)
-    s_model.save(filename3)
-    print('>Saved: %s, %s, and %s' % (filename1, filename2, filename3))
-    plot_test_acc.append(acc)
 
 def one_example():
   img , _= gen_fake_samples(g_model , 100,1)
