@@ -21,7 +21,7 @@ parser.add_argument('--em_dem', type = int, default = 200, help = "Denote embedd
 args = parser.parse_args()
 
 filename_token = args.base_dir + '/all_captions/Flickr8k.token.txt'
-fname_trainImage = args.base_dir +'/dataset/Flickr8k_text/Flickr_8k.trainImages.txt'
+fname_trainImage = args.base_dir +'/all_captions/Flickr_8k.trainImages.txt'
 images = args.base_dir +'/all_images/Flickr8k_Dataset/'
 img = glob.glob(args.base_dir +"/all_images/Flicker8k_Dataset/*.jpg")
 train_images_file = args.base_dir +'/all_captions/Flickr_8k.trainImages.txt'
