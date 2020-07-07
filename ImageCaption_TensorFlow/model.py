@@ -1,4 +1,6 @@
 import keras
+import numpy
+from numpy import array
 from keras.applications.inception_v3 import InceptionV3
 from keras.models import Model
 from keras import Input, layers
