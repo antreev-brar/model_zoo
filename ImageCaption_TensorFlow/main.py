@@ -160,7 +160,7 @@ for word , i in wordtoix.items():
 epochs = args.epochs
 num_photos_per_batch = args.num_photos_per_batch
 steps = len(train_descriptions)//num_photos_per_batch
-
+max_length = max_length(train_descriptions)
 
 model = make_model()
 model.layers[2].set_weights([embedding_matrix])
