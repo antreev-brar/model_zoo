@@ -92,7 +92,7 @@ def make_test_image_array(test_images_file,img):
  print(len(test_img))
  return test_img
 
-def load_clean_descriptions(dataset):
+def load_clean_descriptions(dataset,descriptions):
   doc = descriptions
   descriptions_ = dict()
   for image_id, image_desc in doc.items():
