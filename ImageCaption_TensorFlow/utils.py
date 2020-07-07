@@ -62,19 +62,6 @@ def make_train_list(fname):
  print('dataset : %d' % len(train))
  return train
 
-def load_clean_descriptions(dataset , descriptions1 ):
-  doc = descriptions1
-  descriptions_ = dict()
-  for image_id, image_desc in doc.items():
-    
-    for val in image_desc :
-      if image_id in dataset:
-        if image_id not in descriptions_:
-          descriptions_[image_id] = list()
-			  
-        desc = 'startseq ' + ' '.join(val.split()) + ' endseq'
-        descriptions_[image_id].append(desc)
-  return descriptions_
 
 
 def make_train_image_array(train_images_file,img):
