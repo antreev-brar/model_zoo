@@ -41,19 +41,6 @@ vocabulary = make_vocabulary(vocabulary , descriptions)
 
 train = make_train_list(fname_trainImage)
 #train_descriptions = load_clean_descriptions(train , descriptions)
-def load_clean_descriptions(dataset , descriptions1 ):
-  doc = descriptions1
-  descriptions_ = dict()
-  for image_id, image_desc in doc.items():
-    
-    for val in image_desc :
-      if image_id in dataset:
-        if image_id not in descriptions_:
-          descriptions_[image_id] = list()
-			  
-        desc = 'startseq ' + ' '.join(val.split()) + ' endseq'
-        descriptions_[image_id].append(desc)
-  return descriptions_
 
 def make_vocab(train_descriptions):
  all_train_captions = []
@@ -162,38 +149,6 @@ epochs = args.epochs
 num_photos_per_batch = args.num_photos_per_batch
 steps = len(train_descriptions)//num_photos_per_batch
 max_length = max_length(train_descriptions)
-
-
-class LossHistory(keras.callbacks.Callback):
-    def __init__(self, logs={}):
-        self.loss = []
-        self.acc=[]
-
-    def on_epoch_end(self, epoch, logs={}):
-        self.loss.append(logs['loss'])  
-        self.acc.append(logs['accuracy'])
-    
-
-
-
-def make_model(max_length , embedding_dim , vocab_size ):
- input1 = Input(shape =(2048,))
- fe1 = Dropout(0.5)(input1)
- fe2 = Dense(256 ,activation = 'relu')(fe1)
-
- input2 = Input(shape = (max_length,))
- se1 = Embedding(vocab_size , embedding_dim , mask_zero = True )(input2)
- se2 = Dropout(0.5)(se1)
- se3 = LSTM(256)(se2)
-
- decoder1  = add([fe2 , se3])
- decoder2  = Dense(256 , activation = 'relu')(decoder1)
- outputs = Dense(vocab_size , activation = 'softmax')(decoder2)
-
- model = Model(inputs = [input1 ,input2] ,outputs = outputs)
- model.summary()
- return model
-
 
 
 model = make_model(max_length , embedding_dim , vocab_size )

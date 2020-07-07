@@ -76,8 +76,6 @@ def make_test_image_array(test_images_file,img):
  print(len(test_img))
  return test_img
 
-
-'''
 def load_clean_descriptions(dataset , descriptions1 ):
   doc = descriptions1
   descriptions_ = dict()
@@ -90,10 +88,7 @@ def load_clean_descriptions(dataset , descriptions1 ):
 			  
         desc = 'startseq ' + ' '.join(val.split()) + ' endseq'
         descriptions_[image_id].append(desc)
-  print('Descriptions: train=%d' % len(train_descriptions))
   return descriptions_
-'''
-
 
 def to_lines(descriptions):
    all_desc = list()
