@@ -43,15 +43,4 @@ def inception_model():
     return model_new
 
 
-class LossHistory(keras.callbacks.Callback):
-    def __init__(self, logs={}):
-        self.loss = []
-        self.acc=[]
-
-    def on_epoch_end(self, epoch, logs={}):
-        self.loss.append(logs['loss'])  
-        self.acc.append(logs['accuracy'])
-    
-
-
 

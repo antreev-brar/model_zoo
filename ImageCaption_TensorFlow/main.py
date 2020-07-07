@@ -8,6 +8,7 @@ import glob
 import pickle
 from pickle import dump, load
 from keras.preprocessing import image
+from keras.preprocessing.sequence import pad_sequences
 from utils import *
 from model import *
 ##############################################
@@ -161,6 +162,19 @@ epochs = args.epochs
 num_photos_per_batch = args.num_photos_per_batch
 steps = len(train_descriptions)//num_photos_per_batch
 max_length = max_length(train_descriptions)
+
+
+class LossHistory(keras.callbacks.Callback):
+    def __init__(self, logs={}):
+        self.loss = []
+        self.acc=[]
+
+    def on_epoch_end(self, epoch, logs={}):
+        self.loss.append(logs['loss'])  
+        self.acc.append(logs['accuracy'])
+    
+
+
 
 def make_model(max_length , embedding_dim , vocab_size ):
  input1 = Input(shape =(2048,))
