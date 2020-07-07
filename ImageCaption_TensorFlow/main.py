@@ -39,7 +39,7 @@ vocabulary = set()
 vocabulary = make_vocabulary(vocabulary , descriptions)
 
 train = make_train_list(fname_trainImage)
-train_descriptions = load_clean_descriptions(train ,descriptions)
+train_descriptions = load_clean_descriptions(train , descriptions)
 
 all_train_captions = []
 vocab = make_vocab(train_descriptions)
