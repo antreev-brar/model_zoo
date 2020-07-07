@@ -62,6 +62,21 @@ def make_train_list(fname):
  print('dataset : %d' % len(train))
  return train
 
+def load_clean_descriptions(dataset , descriptions1 ):
+  doc = descriptions1
+  descriptions_ = dict()
+  for image_id, image_desc in doc.items():
+    
+    for val in image_desc :
+      if image_id in dataset:
+        if image_id not in descriptions_:
+          descriptions_[image_id] = list()
+			  
+        desc = 'startseq ' + ' '.join(val.split()) + ' endseq'
+        descriptions_[image_id].append(desc)
+  return descriptions_
+
+
 def make_train_image_array(train_images_file,img):
  train_images = set(open(train_images_file, 'r').read().strip().split('\n'))
  print('train_image_example :', img[0].split('/')[-1])
@@ -82,15 +97,7 @@ def make_test_image_array(test_images_file,img):
  print(len(test_img))
  return test_img
 
-def make_test_image_array(test_images_file,img):
- test_images = set(open(test_images_file, 'r').read().strip().split('\n'))
- test_img = []
 
- for i in img: 
-    if i.split('/')[-1] in test_images: 
-        test_img.append(i)
- print(len(test_img))
- return test_img
 '''
 def load_clean_descriptions(dataset , descriptions1 ):
   doc = descriptions1
@@ -108,6 +115,7 @@ def load_clean_descriptions(dataset , descriptions1 ):
   return descriptions_
 '''
 def make_vocab(train_descriptions):
+ all_train_captions = []
  for key ,val in train_descriptions.items():
   for cap in val :
     all_train_captions.append(cap)
