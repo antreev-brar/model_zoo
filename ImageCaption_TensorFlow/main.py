@@ -133,7 +133,17 @@ for w in vocab :
   ix += 1
 vocab_size = len(ixtoword) + 1
 ###############################################################
-
+def load_embedding_index(filenameGlove):
+    embeddings_index = {}
+    f = open(filenameGlove , encoding = "utf-8")
+    for line in f:
+        values = line.split()
+        word = values[0]
+        coefs = np.asarray(values[1:], dtype = 'float32')
+        embeddings_index[word] = coefs
+    f.close()
+    return embeddings_index
+  
 
 embeddings_index = load_embedding_index(filenameGlove)
 print('Found %s word vectors.' % len(embeddings_index))

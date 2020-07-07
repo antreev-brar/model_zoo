@@ -32,17 +32,7 @@ def clean_descriptions(descriptions):
     desc = [word for word in desc if word.isalpha() ]
     desc_list[i] = ' '.join(desc)
 
-def load_embedding_index(filenameGlove):
-    embeddings_index = {}
-    f = open(filenameGlove , encoding = "utf-8")
-    for line in f:
-        values = line.split()
-        word = values[0]
-        coefs = np.asarray(values[1:], dtype = 'float32')
-        embeddings_index[word] = coefs
-    f.close()
-    return embeddings_index
-  
+
 
 def make_vocabulary(vocabulary , descriptions):
   for key in descriptions.keys():
