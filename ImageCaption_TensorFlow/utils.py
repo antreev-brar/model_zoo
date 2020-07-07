@@ -91,7 +91,7 @@ def make_test_image_array(test_images_file,img):
         test_img.append(i)
  print(len(test_img))
  return test_img
-
+'''
 def load_clean_descriptions(dataset , descriptions1 ):
   doc = descriptions1
   descriptions_ = dict()
@@ -106,7 +106,7 @@ def load_clean_descriptions(dataset , descriptions1 ):
         descriptions_[image_id].append(desc)
   print('Descriptions: train=%d' % len(train_descriptions))
   return descriptions_
-
+'''
 def make_vocab(train_descriptions):
  for key ,val in train_descriptions.items():
   for cap in val :
