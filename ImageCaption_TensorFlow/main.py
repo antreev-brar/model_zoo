@@ -53,7 +53,25 @@ def load_clean_descriptions(dataset , descriptions1 ):
         desc = 'startseq ' + ' '.join(val.split()) + ' endseq'
         descriptions_[image_id].append(desc)
   return descriptions_
+  
+def make_vocab(train_descriptions):
+ all_train_captions = []
+ for key ,val in train_descriptions.items():
+  for cap in val :
+    all_train_captions.append(cap)
+ print(descriptions['937559727_ae2613cee5'])
+ print(len(all_train_captions))
+ word_count_threshold = 10
+ word_counts = {}
+ nsents = 0
+ for sent in all_train_captions:
+  nsents += 1
+  for w in sent.split(' '):
+    word_counts[w] = word_counts.get(w,0)+1
 
+ vocab = [w for w in word_counts if word_counts[w] >= word_count_threshold ]
+ print('preprocessed words %d '% len(vocab))
+ return vocab
 
 train_descriptions = load_clean_descriptions(train , descriptions)
 print(train_descriptions['937559727_ae2613cee5'])
