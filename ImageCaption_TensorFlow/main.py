@@ -53,7 +53,7 @@ def load_clean_descriptions(dataset , descriptions1 ):
         desc = 'startseq ' + ' '.join(val.split()) + ' endseq'
         descriptions_[image_id].append(desc)
   return descriptions_
-  
+
 def make_vocab(train_descriptions):
  all_train_captions = []
  for key ,val in train_descriptions.items():
@@ -90,7 +90,7 @@ model_new = inception_model()
 encoding_train = {}
 encoding_test = {}
 for img in train_img:
-    encoding_train[img[len(images):]] = encode(img)
+    encoding_train[img[len('./all_images/Flickr8k_Dataset/'):]] = encode(img)
 print(len(encoding_train ))
 
 with open("encoded_train_images.pkl", "wb") as encoded_pickle:
@@ -98,7 +98,7 @@ with open("encoded_train_images.pkl", "wb") as encoded_pickle:
 
 
 for img in test_img:
-    encoding_test[img[len(images):]] = encode(img)
+    encoding_test[img[len('./all_images/Flickr8k_Dataset/'):]] = encode(img)
 print(len(encoding_test))
 
 with open("encoded_test_images.pkl", "wb") as encoded_pickle:
