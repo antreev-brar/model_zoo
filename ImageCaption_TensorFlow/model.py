@@ -8,7 +8,7 @@ from keras.layers import LSTM, Embedding, TimeDistributed, Dense,Input , Dropout
 from keras.layers.merge import add
 from keras.utils import to_categorical
 from keras.preprocessing.sequence import pad_sequences
-def data_generator(descriptions , photos , wordtoix , max_length , num_photos_per_batch):
+def data_generator(descriptions , photos , wordtoix , max_length , num_photos_per_batch,vocab_size):
   x1,x2 ,y = list(), list() , list()
   n = 0
   while( True):

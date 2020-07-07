@@ -203,6 +203,6 @@ model.compile(loss='categorical_crossentropy', optimizer='adam',metrics=['accura
 
 history = LossHistory()
 for i in range(epochs):
-  generator = data_generator(train_descriptions , train_features ,wordtoix , max_length ,num_photos_per_batch)
+  generator = data_generator(train_descriptions , train_features ,wordtoix , max_length ,num_photos_per_batch , vocab_size)
   model.fit_generator(generator , epochs =epochs ,steps_per_epoch = steps ,verbose =1,callbacks=[history])
   model.save('model_weigths'+str(i)+'.h5')
