@@ -45,7 +45,6 @@ def make_vocab(train_descriptions):
  for key ,val in train_descriptions.items():
   for cap in val :
     all_train_captions.append(cap)
- print(descriptions['937559727_ae2613cee5'])
  print(len(all_train_captions))
  word_count_threshold = 10
  word_counts = {}
