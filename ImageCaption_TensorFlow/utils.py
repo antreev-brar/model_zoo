@@ -3,6 +3,7 @@ from keras.preprocessing.sequence import pad_sequences
 import string
 import matplotlib.pyplot as plt
 from keras.preprocessing import image
+import numpy as np
 from PIL import Image
 #%matplotlib inline
 from keras.applications.inception_v3 import preprocess_input
