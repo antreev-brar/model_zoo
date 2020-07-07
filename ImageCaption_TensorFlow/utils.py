@@ -4,7 +4,7 @@ import string
 import matplotlib.pyplot as plt
 from keras.preprocessing import image
 import numpy as np
-from PIL import Image
+from numpy import array
 #%matplotlib inline
 from keras.applications.inception_v3 import preprocess_input
 def concat_descriptions(doc , descriptions):
@@ -33,7 +33,7 @@ def clean_descriptions(descriptions):
     desc_list[i] = ' '.join(desc)
 
 def load_embedding_index(filenameGlove):
- 
+    embeddings_index = {}
     f = open(filenameGlove , encoding = "utf-8")
     for line in f:
         values = line.split()

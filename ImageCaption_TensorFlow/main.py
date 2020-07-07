@@ -134,7 +134,7 @@ for w in vocab :
 vocab_size = len(ixtoword) + 1
 ###############################################################
 
-embeddings_index = {}
+
 embeddings_index = load_embedding_index(filenameGlove)
 print('Found %s word vectors.' % len(embeddings_index))
 
