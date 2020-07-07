@@ -90,6 +90,31 @@ def load_clean_descriptions(dataset , descriptions1 ):
         descriptions_[image_id].append(desc)
   return descriptions_
 
+def load_embedding_index(filenameGlove):
+    embeddings_index = {}
+    f = open(filenameGlove , encoding = "utf-8")
+    for line in f:
+        values = line.split()
+        word = values[0]
+        coefs = np.asarray(values[1:], dtype = 'float32')
+        embeddings_index[word] = coefs
+    f.close()
+    return embeddings_index
+
+
+def preprocess(image_path):
+    img = image.load_img(image_path, target_size=(299, 299))
+    x = image.img_to_array(img)
+    x = np.expand_dims(x, axis=0)
+    x = preprocess_input(x)
+    return x
+
+def encode(image):
+    image = preprocess(image) # preprocess the image
+    fea_vec = model_new.predict(image) # Get the encoding vector for the image
+    fea_vec = np.reshape(fea_vec, fea_vec.shape[1]) # reshape from (1, 2048) to (2048, )
+    return fea_vec
+
 def to_lines(descriptions):
    all_desc = list()
    for key in descriptions.keys():
