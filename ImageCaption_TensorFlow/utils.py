@@ -2,7 +2,7 @@ from PIL import Image
 from keras.preprocessing.sequence import pad_sequences
 import string
 import matplotlib.pyplot as plt
-
+from keras.preprocessing import image
 #%matplotlib inline
 from keras.applications.inception_v3 import preprocess_input
 def concat_descriptions(doc , descriptions):
