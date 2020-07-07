@@ -87,6 +87,20 @@ test_img = make_test_image_array(test_images_file,img)
 model_new = inception_model()
 #########################################################
 
+
+def preprocess(image_path):
+    img = image.load_img(image_path, target_size=(299, 299))
+    x = image.img_to_array(img)
+    x = np.expand_dims(x, axis=0)
+    x = preprocess_input(x)
+    return x
+
+def encode(image):
+    image = preprocess(image) # preprocess the image
+    fea_vec = model_new.predict(image) # Get the encoding vector for the image
+    fea_vec = np.reshape(fea_vec, fea_vec.shape[1]) # reshape from (1, 2048) to (2048, )
+    return fea_vec
+
 encoding_train = {}
 encoding_test = {}
 for img in train_img:

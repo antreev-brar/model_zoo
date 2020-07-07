@@ -104,20 +104,6 @@ def load_clean_descriptions(dataset , descriptions1 ):
 '''
 
 
-
-def preprocess(image_path):
-    img = image.load_img(image_path, target_size=(299, 299))
-    x = image.img_to_array(img)
-    x = np.expand_dims(x, axis=0)
-    x = preprocess_input(x)
-    return x
-
-def encode(image):
-    image = preprocess(image) # preprocess the image
-    fea_vec = model_new.predict(image) # Get the encoding vector for the image
-    fea_vec = np.reshape(fea_vec, fea_vec.shape[1]) # reshape from (1, 2048) to (2048, )
-    return fea_vec
-
 def to_lines(descriptions):
    all_desc = list()
    for key in descriptions.keys():
