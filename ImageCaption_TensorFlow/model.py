@@ -53,19 +53,19 @@ class LossHistory(keras.callbacks.Callback):
         self.acc.append(logs['accuracy'])
     
 
-def make_model():
+def make_model(max_length , embedding_dim , vocab_size ):
  input1 = Input(shape =(2048,))
  fe1 = Dropout(0.5)(input1)
  fe2 = Dense(256 ,activation = 'relu')(fe1)
 
  input2 = Input(shape = (max_length,))
- se1 = Embedding(len(vocab)+1 , embedding_dim , mask_zero = True )(input2)
+ se1 = Embedding(vocab_size , embedding_dim , mask_zero = True )(input2)
  se2 = Dropout(0.5)(se1)
  se3 = LSTM(256)(se2)
 
  decoder1  = add([fe2 , se3])
  decoder2  = Dense(256 , activation = 'relu')(decoder1)
- outputs = Dense(len(vocab)+1 , activation = 'softmax')(decoder2)
+ outputs = Dense(vocab_size , activation = 'softmax')(decoder2)
 
  model = Model(inputs = [input1 ,input2] ,outputs = outputs)
  model.summary()
