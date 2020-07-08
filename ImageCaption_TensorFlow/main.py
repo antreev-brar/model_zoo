@@ -36,19 +36,15 @@ doc = file.read()
 descriptions = dict()
 concat_descriptions(doc , descriptions)
 clean_descriptions(descriptions)
+
 vocabulary = set()
 vocabulary = make_vocabulary(vocabulary , descriptions)
 
 train = make_train_list(fname_trainImage)
-
-
 train_descriptions = load_clean_descriptions(train , descriptions)
 print(train_descriptions['937559727_ae2613cee5'])
 
-
 vocab = make_vocab(train_descriptions)
-
-
 ######################################################
 train_img = make_train_image_array(train_images_file,img)
 test_img = make_test_image_array(test_images_file,img)
