@@ -56,9 +56,9 @@ model_new = inception_model()
 
 encoding_train = {}
 encoding_test = {}
-'''
+
 for img in train_img:
-    encoding_train[img[len('./all_images/Flickr8k_Dataset/'):]] = encode(img)
+    encoding_train[img[len('./all_images/Flickr8k_Dataset/'):]] = encode(img,model_new)
 print(len(encoding_train ))
 
 with open("encoded_train_images.pkl", "wb") as encoded_pickle:
@@ -66,12 +66,12 @@ with open("encoded_train_images.pkl", "wb") as encoded_pickle:
 
 
 for img in test_img:
-    encoding_test[img[len('./all_images/Flickr8k_Dataset/'):]] = encode(img)
+    encoding_test[img[len('./all_images/Flickr8k_Dataset/'):]] = encode(img,model_new)
 print(len(encoding_test))
 
 with open("encoded_test_images.pkl", "wb") as encoded_pickle:
     pickle.dump(encoding_test, encoded_pickle)
-'''
+
 train_features = load(open("encoded_train_images.pkl", "rb"))
 print('Photos: train=%d' % len(train_features))
 test_features = load(open("encoded_test_images.pkl", "rb"))
